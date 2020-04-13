@@ -1,0 +1,54 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}
+Sign Up
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='signin.css')}}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+
+  <form action="/signup" method="POST" class="form-signin" >
+    <h2 class="form-signin-heading">Registrarse</h2>
+    <label for="inputUsuario" class="sr-only">Nombre Usuario</label>
+    <input type="text" name="inputUsuario" class="form-control" placeholder="Usuario" required autofocus>
+
+    <label for="inputEmail" class="sr-only">Email</label>
+    <input type="email" name="inputEmail" class="form-control" placeholder="Email" required autofocus>
+
+    <label for="text" class="sr-only">Edad</label>
+    <input type="text" name="inputAge" class="form-control" placeholder="Edad" required autofocus>
+
+    <label for="text" class="sr-only">Palabra Secreta</label>
+    <input type="text" name="inputSecret" class="form-control" placeholder="Palabra Secreta" required autofocus>
+    <br>
+    <p  class="badge badge-primary text-wrap" style="width: 20rem;" ><strong>Ingrese el tipo de Usuario</strong></p>
+    <br>
+    <input type="radio" id="admin" name="tipoUsu" value="Admin">
+    <label for="Administrador">Administrador</label><br>
+    <input type="radio" id="Lead" name="tipoUsu"  value="Lead">
+    <label for="female">Lead</label><br>
+    <input type="radio" id="Usuario" name="tipoUsu" value="Usuario">
+    <label for="Usuario">Usuario</label><br>
+
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" name="inputPassword" class="form-control" placeholder="Password" required>
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Enviar</button>
+     {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-warning" role="alert">
+  <span>{{ message}}</span>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+  </form>
+
+</div> <!-- /container -->
+{% endblock %}
